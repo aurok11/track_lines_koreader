@@ -14,7 +14,7 @@ local T = require("ffi/util").template
 local _ = require("gettext")
 local LuaSettings = require("luasettings")
 local DataStorage = require("datastorage")
-local Blitbuffer = require("ffi/blitbuffer"
+local Blitbuffer = require("ffi/blitbuffer")
 --local Dispatcher = require("dispatcher")
 
                            
@@ -58,7 +58,7 @@ function TrackLines:init()
     if not self.is_enabled then
         return
     end
-    self:onDispatcherRegisterActions()
+    -- self:onDispatcherRegisterActions()
     self:createUI(true)
 end
 
@@ -110,16 +110,6 @@ function TrackLines:createUI(readSettings)
 
     self.right_line = WidgetContainer:new{
        -- TODO: is this where position is set? can we make this horizontal??
-        dimen = Geom:new{
-            x = self.screen_width * self.margin,
-            y = line_top_position,
-            w = self.line_thickness,
-            h = line_height,
-        },
-        line_widget
-    }
-
-    self.right_line = Wid
         dimen = Geom:new{
             x = self.screen_width - (self.screen_width * self.margin),
             y = line_top_position,
