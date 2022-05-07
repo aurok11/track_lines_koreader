@@ -20,7 +20,7 @@ local LuaSettings = require("luasettings")
 local DataStorage = require("datastorage")
 local Blitbuffer = require("ffi/blitbuffer")
 local Dispatcher = require("dispatcher")
-
+local logger=require("logger")
                            
 local TrackLines = Widget:extend{
     is_enabled = nil,
@@ -56,12 +56,14 @@ end
 
 
 function TrackLines:init()
+   logger.warn("TrackLines HELLO")
+   
     if not self.settings then self:readSettingsFile() end
 
     self.is_enabled = self.settings:isTrue("is_enabled")
-    if not self.is_enabled then
-        return
-    end
+    -- if not self.is_enabled then
+    --     return
+    -- end
     self:onDispatcherRegisterActions()
     self:createUI(true)
 end
