@@ -2,8 +2,8 @@
 
 -- maybe can register buttons for call from gestures: https://github.com/koreader/koreader/blob/master/plugins/calibre.koplugin/main.lua#L64
 
--- adb push main.lua /sdcard/,,,,,,,,,,,,??????
-
+-- adb push main.lua /sdcard/koreader/plugins/tracklines.koplugin/
+-- adb logcat | grep KOReader | grep Track
 
 local Widget = require("ui/widget/widget")
 local LineWidget = require("ui/widget/linewidget")
