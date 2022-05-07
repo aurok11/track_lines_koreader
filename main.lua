@@ -1,6 +1,9 @@
 -- copied this off the perception expander plugin
 -- maybe can register buttons for call from gestures: https://github.com/koreader/koreader/blob/master/plugins/calibre.koplugin/main.lua#L64
 
+-- adb push main.lua /sdcard/,,,,,,,,,,,,??????
+
+
 local Widget = require("ui/widget/widget")
 local LineWidget = require("ui/widget/linewidget")
 local MultiInputDialog = require("ui/widget/multiinputdialog")
@@ -15,7 +18,7 @@ local _ = require("gettext")
 local LuaSettings = require("luasettings")
 local DataStorage = require("datastorage")
 local Blitbuffer = require("ffi/blitbuffer")
---local Dispatcher = require("dispatcher")
+local Dispatcher = require("dispatcher")
 
                            
 local TrackLines = Widget:extend{
@@ -33,9 +36,9 @@ local TrackLines = Widget:extend{
 }
 
 --function TrackLines:onDispatcherRegisterActions()
---    Dispatcher:registerAction("tracklines_search", { category="general", event="TrackLinesSearch", title=_("Track Line Search"), general=true,})
---    Dispatcher:registerAction("tracklines_browse_tags", { category="general", event="TrackLinesBrowseTags", title=_("Track Line Browse all tags"), general=true,})
---    Dispatcher:registerAction("tracklines_browse_series", { category="general", event="TrackLinesBrowseSeries", title=_("Track Line Browse all series"), general=true, separator=true,})
+--    Dispatcher:registerAction("tracklines_search", { category="none", event="TrackLinesSearch", title=_("Track Line Search"), general=true,})
+--    Dispatcher:registerAction("tracklines_browse_tags", { category="none", event="TrackLinesBrowseTags", title=_("Track Line Browse all tags"), general=true,})
+--    Dispatcher:registerAction("tracklines_browse_series", { category="none", event="TrackLinesBrowseSeries", title=_("Track Line Browse all series"), general=true, separator=true,})
 --end
 
 --function Calibre:onTrackLinesSearch()
@@ -58,7 +61,7 @@ function TrackLines:init()
     if not self.is_enabled then
         return
     end
-    -- self:onDispatcherRegisterActions()
+    --self:onDispatcherRegisterActions()
     self:createUI(true)
 end
 
