@@ -1,4 +1,5 @@
--- copied this off the perception expander plugin
+-- copied this off the perception expander plugin - so this is AGPLv3
+
 -- maybe can register buttons for call from gestures: https://github.com/koreader/koreader/blob/master/plugins/calibre.koplugin/main.lua#L64
 
 -- adb push main.lua /sdcard/,,,,,,,,,,,,??????
@@ -35,23 +36,23 @@ local TrackLines = Widget:extend{
     last_screen_mode = nil
 }
 
---function TrackLines:onDispatcherRegisterActions()
---    Dispatcher:registerAction("tracklines_search", { category="none", event="TrackLinesSearch", title=_("Track Line Search"), general=true,})
---    Dispatcher:registerAction("tracklines_browse_tags", { category="none", event="TrackLinesBrowseTags", title=_("Track Line Browse all tags"), general=true,})
---    Dispatcher:registerAction("tracklines_browse_series", { category="none", event="TrackLinesBrowseSeries", title=_("Track Line Browse all series"), general=true, separator=true,})
---end
+function TrackLines:onDispatcherRegisterActions()
+    Dispatcher:registerAction("tracklines_search", { category="none", event="TrackLinesSearch", title=_("Track Line Search"), general=true,})
+    Dispatcher:registerAction("tracklines_browse_tags", { category="none", event="TrackLinesBrowseTags", title=_("Track Line Browse all tags"), general=true,})
+    Dispatcher:registerAction("tracklines_browse_series", { category="none", event="TrackLinesBrowseSeries", title=_("Track Line Browse all series"), general=true, separator=true,})
+end
 
---function Calibre:onTrackLinesSearch()
---    return true
---end
+function TrackLines:onTrackLinesSearch()
+    return true
+end
 
---function Calibre:onTrackLinesBrowseTags()
---    return true
---end
+function TrackLines:onTrackLinesBrowseTags()
+    return true
+end
 
---function Calibre:onTrackLinesBrowseSeries()
---    return true
---end
+function TrackLines:onTrackLinesBrowseSeries()
+    return true
+end
 
 
 function TrackLines:init()
@@ -61,7 +62,7 @@ function TrackLines:init()
     if not self.is_enabled then
         return
     end
-    --self:onDispatcherRegisterActions()
+    self:onDispatcherRegisterActions()
     self:createUI(true)
 end
 
