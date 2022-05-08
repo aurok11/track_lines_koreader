@@ -34,7 +34,7 @@ local TrackLines = Widget:extend{
     settings = nil,
     ALMOST_CENTER_OF_THE_SCREEN = 0.37,
     last_screen_mode = nil,
-    increment = 10
+    increment = 40
 }
 
 function TrackLines:onDispatcherRegisterActions()
@@ -52,7 +52,7 @@ function TrackLines:onTrackLinesMoveUp()
     --UIManager:setDirty(self.left_line.dimen, "ui")
     UIManager:setDirty(self.view.dialog, "partial")
 
-    UIManager:forceRePaint()
+    --UIManager:forceRePaint()
 
     logger.warn("TrackLines decrement y, done rendering...")
     return true
@@ -64,7 +64,7 @@ function TrackLines:onTrackLinesMoveDown()
 
     --UIManager:setDirty(self.left_line.dimen, "ui")
     UIManager:setDirty(self.view.dialog, "partial")
-    UIManager:forceRePaint()
+    --UIManager:forceRePaint()
 
     logger.warn("TrackLines increment y, done rendering...")
     return true
