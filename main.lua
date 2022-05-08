@@ -49,7 +49,9 @@ function TrackLines:onTrackLinesMoveUp()
     -- UIManager:setDirty (widget, refreshtype, refreshregion, refreshdither)
     -- UIManager:forceRePaint()
     -- UIManager:widgetRepaint (self.left_line, self.left_line.dimen.x, self.left_line.dimen.y)
-    UIManager:setDirty(self.left_line, "ui")
+    --UIManager:setDirty(self.left_line.dimen, "ui")
+    UIManager:setDirty(self.view.dialog, "partial")
+
     UIManager:forceRePaint()
 
     logger.warn("TrackLines decrement y, done rendering...")
@@ -60,7 +62,8 @@ function TrackLines:onTrackLinesMoveDown()
     self.left_line.dimen.y = self.left_line.dimen.y + self.increment
     logger.warn("TrackLines increment y, now render...")
 
-    UIManager:setDirty(self.left_line, "ui")
+    --UIManager:setDirty(self.left_line.dimen, "ui")
+    UIManager:setDirty(self.view.dialog, "partial")
     UIManager:forceRePaint()
 
     logger.warn("TrackLines increment y, done rendering...")
