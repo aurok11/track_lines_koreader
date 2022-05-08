@@ -245,10 +245,18 @@ function TrackLines:addToMainMenu(menu_items)
 end
 
 function TrackLines:onPageUpdate(pageno)
-    if not self.is_enabled then
-        return
-    end
 
+    logger.warn("TrackLines on page update")
+
+   --if not self.is_enabled then
+   --     return
+   -- end
+
+    self.left_line.dimen.y = math.floor(Screen:getHeight() * 0.05)
+    logger.warn("TrackLines reset line position")
+    UIManager:setDirty(self.view.dialog, "partial")
+
+    
     -- If this plugin did not apply screen orientation change, redraw plugin UI
     if Screen:getScreenMode() ~= self.last_screen_mode then
         self:createUI()
