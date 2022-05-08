@@ -33,7 +33,8 @@ local TrackLines = Widget:extend{
     margin_shift = 0.03,
     settings = nil,
     ALMOST_CENTER_OF_THE_SCREEN = 0.37,
-    last_screen_mode = nil
+    last_screen_mode = nil,
+    increment = 10
 }
 
 function TrackLines:onDispatcherRegisterActions()
@@ -42,20 +43,28 @@ function TrackLines:onDispatcherRegisterActions()
 end
 
 function TrackLines:onTrackLinesMoveUp()
-    self.left_line.dimen.y = 50
+    self.left_line.dimen.y = self.left_line.dimen.y - self.increment
+    logger.warn("TrackLines decrement y, now render...")
+    
+    -- UIManager:setDirty (widget, refreshtype, refreshregion, refreshdither)
+    -- UIManager:forceRePaint()
+    -- UIManager:widgetRepaint (self.left_line, self.left_line.dimen.x, self.left_line.dimen.y)
+    
+    logger.warn("TrackLines decrement y, done rendering...")
     return true
 end
 
 function TrackLines:onTrackLinesMoveDown()
-    self.left_line.dimen.y = 200
+    self.left_line.dimen.y = self.left_line.dimen.y + self.increment
+    logger.warn("TrackLines increment y, now render...")
+
+    logger.warn("TrackLines increment y, done rendering...")
     return true
 end
 
 function TrackLines:init()
-   logger.warn("TrackLines HELLO")
-   
+    logger.warn("TrackLines HELLO")
     if not self.settings then self:readSettingsFile() end
-
     self.is_enabled = self.settings:isTrue("is_enabled")
     if not self.is_enabled then
          return
@@ -103,7 +112,7 @@ function TrackLines:createUI(readSettings)
     self.left_line = WidgetContainer:new{
        -- TODO: is this where position is set? can we make this horizontal??
         dimen = Geom:new{
-            x = self.screen_width * self.margin,
+            x = 0, --self.screen_width * self.margin,
             y = line_top_position,
             w = self.line_thickness,
             h = line_height,
