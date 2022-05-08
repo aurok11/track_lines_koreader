@@ -37,23 +37,19 @@ local TrackLines = Widget:extend{
 }
 
 function TrackLines:onDispatcherRegisterActions()
-    Dispatcher:registerAction("tracklines_search", { category="none", event="TrackLinesSearch", title=_("Track Line Search"), general=true,})
-    Dispatcher:registerAction("tracklines_browse_tags", { category="none", event="TrackLinesBrowseTags", title=_("Track Line Browse all tags"), general=true,})
-    Dispatcher:registerAction("tracklines_browse_series", { category="none", event="TrackLinesBrowseSeries", title=_("Track Line Browse all series"), general=true, separator=true,})
+    Dispatcher:registerAction("tracklines_move_up", { category="none", event="TrackLinesMoveUp", title=_("Move up"), general=true,})
+    Dispatcher:registerAction("tracklines_move_down", { category="none", event="TrackLinesMoveDown", title=_("Move down"), general=true,})
 end
 
-function TrackLines:onTrackLinesSearch()
+function TrackLines:onTrackLinesMoveUp()
+    self.left_line.dimen.y = 50
     return true
 end
 
-function TrackLines:onTrackLinesBrowseTags()
+function TrackLines:onTrackLinesMoveDown()
+    self.left_line.dimen.y = 200
     return true
 end
-
-function TrackLines:onTrackLinesBrowseSeries()
-    return true
-end
-
 
 function TrackLines:init()
    logger.warn("TrackLines HELLO")
