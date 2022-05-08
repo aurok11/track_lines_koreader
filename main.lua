@@ -61,10 +61,9 @@ function TrackLines:init()
     if not self.settings then self:readSettingsFile() end
 
     self.is_enabled = self.settings:isTrue("is_enabled")
-    -- if not self.is_enabled then
-    --     return
-    -- end
-    self:onDispatcherRegisterActions()
+    if not self.is_enabled then
+         return
+    end
     self:createUI(true)
 end
 
@@ -73,6 +72,8 @@ function TrackLines:readSettingsFile()
 end
 
 function TrackLines:createUI(readSettings)
+    logger.warn("TrackLines about to register and create UI")
+    self:onDispatcherRegisterActions()
     if readSettings then
         self.line_thickness = tonumber(self.settings:readSetting("line_thick"))
         self.margin = tonumber(self.settings:readSetting("margin"))
@@ -98,8 +99,8 @@ function TrackLines:createUI(readSettings)
 
        -- TODO: is this where position is set? can we make this horizontal??
         dimen = Geom:new{
-            w = self.line_thickness,
-            h = line_height,
+            w = line_height,
+            h = self.line_thickness,
         },
     }
 
@@ -114,20 +115,20 @@ function TrackLines:createUI(readSettings)
         line_widget
     }
 
-    self.right_line = WidgetContainer:new{
-       -- TODO: is this where position is set? can we make this horizontal??
-        dimen = Geom:new{
-            x = self.screen_width - (self.screen_width * self.margin),
-            y = line_top_position,
-            w = self.line_thickness,
-            h = line_height,
-        },
-        line_widget
-    }
+    -- self.right_line = WidgetContainer:new{
+    --    -- TODO: is this where position is set? can we make this horizontal??
+    --     dimen = Geom:new{
+    --         x = self.screen_width - (self.screen_width * self.margin),
+    --         y = line_top_position,
+    --         w = self.line_thickness,
+    --         h = line_height,
+    --     },
+    --     line_widget
+    -- }
 
     self[1] = HorizontalGroup:new{
         self.left_line,
-        self.right_line,
+        -- self.right_line,
     }
 end
 
@@ -243,8 +244,8 @@ function TrackLines:onPageUpdate(pageno)
     if self.shift_each_pages ~= 0 and self.page_counter >= self.shift_each_pages and self.margin < self.ALMOST_CENTER_OF_THE_SCREEN then
         self.page_counter = 0
         self.margin = self.margin + self.margin_shift
-        self.left_line.dimen.x = self.screen_width * self.margin
-        self.right_line.dimen.x = self.screen_width - (self.screen_width * self.margin)
+        -- self.left_line.dimen.x = self.screen_width * self.margin
+        -- self.right_line.dimen.x = self.screen_width - (self.screen_width * self.margin)
     else
         self.page_counter = self.page_counter + 1;
     end
