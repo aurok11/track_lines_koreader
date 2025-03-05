@@ -2,8 +2,6 @@
 
 A simple plugin that displays horizontal reading guide lines to help maintain your place while reading.
 
-![TrackLines Example](images/tracklines_example.jpg)
-
 ## Overview
 
 TrackLines adds horizontal guide lines to your KOReader display, helping you keep track of where you are on the page. This can be particularly useful for:
