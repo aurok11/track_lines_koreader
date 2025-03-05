@@ -1,0 +1,13 @@
+# KOReader related files
+.koreader/
+.koreader/**/*
+
+# Common system files to ignore
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor backup files
+*~
+*.bak
+*.swp 
