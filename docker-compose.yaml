@@ -1,0 +1,14 @@
+services:
+  koreader:
+    image: ghcr.io/zephyros-dev/koreader:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/config/.config/koreader/plugins/track_lines.koplugin
+      - ./.koreader:/config/.config/koreader
+
+    cap_add:
+      - CAP_NET_RAW # Required for some network options like calibre
+
+volumes:
+  config:
